@@ -1,0 +1,15 @@
+{
+  "name": "todayilearned",
+  "version": "0.0.1",
+  "description": "Developer blog for Driven Local",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/notryanb/til.git",
+    "type": "git"
+  },
+  "author": "Ryan Blecher",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.4.2"
+  }
+}
