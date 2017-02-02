@@ -25,16 +25,17 @@ const config = {
       title: 'Listlogs'
     })
   ],
+  resolve: { extensions: ['.js', '.jsx'] },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: __dirname,
         use: [{
           loader: 'babel-loader',
           options: {
             presets: [
-              ['es2015', { modules: false }]
+              'react', ['es2015', { modules: false }]
             ]
           }
         }]
