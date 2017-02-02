@@ -18,5 +18,8 @@ build/
 # Yarn integrity file
 .yarn-integrity
 
+# OSX Specific meta files
+.DS_Store
+
 # dotenv environment variables file
 .env
