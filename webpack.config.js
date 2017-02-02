@@ -2,7 +2,7 @@ const config = {
   context: __dirname,
   entry: './app.js',
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/build',
     filename: 'bundle.js'
   },
   module: {
@@ -18,7 +18,15 @@ const config = {
         }
       }]
     }]
-  }
+  },
+  rules: [{
+      test: /\.scss$/,
+      use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader'
+          ]
+  }]
 }
 
 module.exports = config;
