@@ -25,11 +25,13 @@
     "css-loader": "^0.26.1",
     "node-sass": "^4.5.0",
     "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^1.16.3"
   },
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack -p",
+    "dev": "node_modules/.bin/webpack-dev-server",
     "webserver": "node api/src/server.js"
   }
 }

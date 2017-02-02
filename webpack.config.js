@@ -1,9 +1,14 @@
 const config = {
-  context: __dirname,
-  entry: './app.js',
+  entry: [
+      './app/src/index.js'
+    ],
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/app/build',
+    publicPath: '/',
     filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: './app/build'
   },
   module: {
     rules: [{
@@ -18,15 +23,7 @@ const config = {
         }
       }]
     }]
-  },
-  rules: [{
-      test: /\.scss$/,
-      use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
-          ]
-  }]
+  }
 }
 
 module.exports = config;
