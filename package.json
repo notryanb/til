@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "webpack --watch",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "webserver": "node api/src/server.js"
   }
 }
