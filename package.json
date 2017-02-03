@@ -47,6 +47,7 @@
   },
   "scripts": {
     "start": "webpack --watch",
+    "start:dev": "webpack --watch & npm run dev",
     "build": "webpack -p",
     "dev": "node_modules/.bin/webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register --recursive",
