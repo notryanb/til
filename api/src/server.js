@@ -4,7 +4,7 @@ const koa = require('koa');
 const logger = require('koa-logger');
 const route = require('koa-route');
 const bodyParser = require('koa-bodyparser');
-const sqlze = require('sequelize');
+const Sequelize = require('sequelize');
 const app = koa();
 
 
@@ -18,7 +18,7 @@ const app = koa();
  *             more complicated actions.
  */
 
-const sequelize = new sqlze('til_dev', 'ryan', 'password', {
+const connection = new Sequelize('til_dev', 'ryan', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
@@ -28,12 +28,12 @@ const sequelize = new sqlze('til_dev', 'ryan', 'password', {
   }
 });
 
-var Article = sequelize.define('article', {
+var Article = connection.define('article', {
   author: {
-    type: sqlze.STRING,
+    type: Sequelize.STRING,
   },
   content: {
-    type: sqlze.STRING
+    type: Sequelize.STRING
   }
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
@@ -42,10 +42,9 @@ var Article = sequelize.define('article', {
 Article.sync({force: true}).then(function () {
   return Article.create({
     author: 'Ryan',
-    content: 'My first article'
+    content: 'Better names'
   });
 });
-
 
 // Middleware
 app.use(logger());
