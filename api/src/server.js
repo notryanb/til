@@ -3,6 +3,8 @@
 const koa = require('koa');
 const logger = require('koa-logger');
 const route = require('koa-route');
+const bodyParser = require('koa-bodyparser');
+const sqlze = require('sequelize');
 const app = koa();
 
 
@@ -16,8 +18,34 @@ const app = koa();
  *             more complicated actions.
  */
 
-// DB will go here
-const posts = [];
+const sequelize = new sqlze('til_dev', 'ryan', 'password', {
+  host: 'localhost',
+  dialect: 'postgres',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
+
+var Article = sequelize.define('article', {
+  author: {
+    type: sqlze.STRING,
+  },
+  content: {
+    type: sqlze.STRING
+  }
+}, {
+  freezeTableName: true // Model tableName will be the same as the model name
+});
+
+Article.sync({force: true}).then(function () {
+  return Article.create({
+    author: 'Ryan',
+    content: 'My first article'
+  });
+});
+
 
 // Middleware
 app.use(logger());
@@ -37,8 +65,14 @@ app.use(route.post('/post', create));
   - Look into best practices for complicated routes
   */
 
+function findArticles(){
+  return Article.findAll().then(function (article) {
+    return article;
+  });
+}
+
 function *list() {
-  this.body = yield { posts: posts };
+  this.body = yield findArticles();
 }
 
 function *show(id) {
