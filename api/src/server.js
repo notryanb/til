@@ -5,8 +5,10 @@ const logger = require('koa-logger');
 const route = require('koa-route');
 const bodyParser = require('koa-bodyparser');
 const Sequelize = require('sequelize');
+const cors = require('koa-cors');
 const app = koa();
 
+app.use(cors());
 
 /*
  * TODO
@@ -39,13 +41,19 @@ var Article = connection.define('article', {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
-Article.sync({force: true}).then(function () {
+connection.sync().then(function () {
   return Article.create({
     author: 'Ryan',
     content: 'Better names'
   });
 });
 
+connection.sync({logging: console.log }).then(function () {
+  return Article.create({
+    author: 'Ryan',
+    content: 'Another'
+  });
+});
 // Middleware
 app.use(logger());
 
