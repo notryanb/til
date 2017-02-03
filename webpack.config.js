@@ -19,6 +19,7 @@ const config = {
     inline: true,
     progress: true
   },
+  devtool: 'source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
@@ -39,6 +40,10 @@ const config = {
             ]
           }
         }]
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader','css-loader','sass-loader']
       }
     ]
   }
