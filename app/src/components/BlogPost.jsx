@@ -6,13 +6,12 @@ export default class BlogPost extends React.Component {
   }
 
   render() {
-    console.log(this.props.blogs);
     return (
 
       <div>
         {
           this.props.blogs.map(blog => {
-            <Blog content={blog.content} />
+            return <Blog key={blog.id} content={blog.content} />
           })
         }
       </div>
