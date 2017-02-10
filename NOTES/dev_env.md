@@ -1,11 +1,15 @@
 # Developer Environment Setup 
 
 ## Cloning the repository
+
 **MacOSX**
+
 In Terminal
+
 `git clone https://github.com/notryanb/til.git`
 
 **Windows**
+
 Working on it...
 
 ## Development Tools
@@ -13,15 +17,20 @@ Working on it...
   - Yarn
 
 **Installing PostgreSQL**
+
 **MacOSX**
+
   - brew Upgrade
   - brew install postgresql
 
 **Windows**
+
 Working on it...
 
 **Installing Yarn**
+
 **MacOSX**
+
   - brew install yarn
 
 **Windows**
@@ -43,18 +52,22 @@ To open PG from cli
 
 Check if your db's were created
 
-`'\l`
+`\l`
 
 **Windows**
+
 Working on it...
 
 ---
 
 ## Installing JS dependencies
+
 **MacOSX**
+
 `yarn install`
 
 **Windows**
+
 Working on it...
 
 
