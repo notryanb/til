@@ -1,6 +1,9 @@
+require('shelljs/global');
+const me = exec(`whoami`).stdout.trimRight();
+
 var database = {
   development: {
-    username: process.env.DATABASE_USERNAME_DEV || 'ryan',
+    username: process.env.DATABASE_USERNAME_DEV || me,
     database: process.env.DATABASE_NAME_DEV || 'til_dev',
     host: process.env.DATABASE_HOST_DEV || '127.0.0.1',
     dialect: 'postgres',
@@ -11,7 +14,7 @@ var database = {
     }
   },
   test: {
-    username: process.env.DATABASE_USERNAME_TEST || 'ryan',
+    username: process.env.DATABASE_USERNAME_TEST || me,
     database: process.env.DATABASE_NAME_TEST || 'til_test',
     host: process.env.DATABASE_HOST_TEST || '127.0.0.1',
     dialect: 'postgres',

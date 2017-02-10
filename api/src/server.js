@@ -1,5 +1,6 @@
 "use-strict";
 
+const shx = require('shelljs/global');
 const koa = require('koa');
 const logger = require('koa-logger');
 const route = require('koa-route');
@@ -8,6 +9,7 @@ const Sequelize = require('sequelize');
 const cors = require('koa-cors');
 const app = koa();
 
+const me = exec(`whoami`).stdout.trimRight();
 app.use(cors());
 
 /*
@@ -20,7 +22,7 @@ app.use(cors());
  *             more complicated actions.
  */
 
-const connection = new Sequelize('til_dev', 'ryan', 'password', {
+const connection = new Sequelize('til_dev', me, 'password', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
