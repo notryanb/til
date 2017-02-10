@@ -32,13 +32,16 @@ Working on it..
 ## Creating Our Databases for development & testing
 **MaxOSX**
 In Terminal
+
 `createdb til_dev
 createdb til_test`
 
 To open PG from cli
+
 `psql`
 
 Check if your db's were created
+
 `'\l`
 
 **Windows**
