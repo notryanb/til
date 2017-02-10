@@ -33,8 +33,9 @@ Working on it..
 **MaxOSX**
 In Terminal
 
-`createdb til_dev
-createdb til_test`
+`createdb til_dev`
+
+`createdb til_test`
 
 To open PG from cli
 
