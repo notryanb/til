@@ -4,7 +4,6 @@ const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
 
-
 var nodeModules = {};
 fs.readdirSync('node_modules')
   .filter(function(x) {
@@ -13,6 +12,7 @@ fs.readdirSync('node_modules')
   .forEach(function(mod) {
     nodeModules[mod] = 'commonjs ' + mod;
   });
+
 
 const apiConfig = {
   entry: [
@@ -23,9 +23,13 @@ const apiConfig = {
     path: path.resolve(ROOT_PATH, 'api/build'),
     filename: 'api-bundle.js'
   },
+  devtool: 'source-map',
   target: 'node',
   externals: nodeModules,
   resolve: { extensions: ['.js'] },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   module: {
     rules: [
       {

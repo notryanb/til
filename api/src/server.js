@@ -1,9 +1,3 @@
-//const koa = require('koa');
-//const logger = require('koa-logger');
-//const bodyParser = require('koa-bodyparser');
-//const cors = require('koa-cors');
-//const router = require('./routers/index.js');
-
 import Koa from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';

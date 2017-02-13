@@ -1,6 +1,3 @@
-//const Sequelize = require('sequelize');
-//const shx = require('shelljs/global');
-
 import Sequelize from 'sequelize';
 import shx from 'shelljs/global';
 
@@ -46,7 +43,7 @@ connection.sync().then(function () {
 connection.sync({logging: console.log }).then(function () {
   return Article.create({
     author: 'Ryan',
-    content: 'Updated Another'
+    content: 'Hot Module Replacement && nodemon'
   });
 });
 

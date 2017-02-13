@@ -52,10 +52,10 @@
   "scripts": {
     "start": "webpack --watch",
     "start:dev": "webpack --watch & npm run dev",
-    "build": "webpack",
+    "build": "webpack --watch",
     "dev": "node_modules/.bin/webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
-    "webserver": "node api/build/api-bundle.js"
+    "webserver": "nodemon api/build/api-bundle.js"
   }
 }
