@@ -1,6 +1,3 @@
-require('shelljs/global');
-const me = exec(`whoami`).stdout.trimRight();
-
 var database = {
   development: {
     username: process.env.DATABASE_USERNAME_DEV || me,
@@ -37,3 +34,5 @@ var database = {
     }
   }
 };
+
+module.exports = database;

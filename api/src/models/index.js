@@ -1,17 +1,17 @@
-import fs from 'fs';
-import path from 'path';
-import Sequelize from 'sequelize';
-import { env } from '../../config/config.js';
-import database from '../../config/database.js';
+'use strict';
 
-const config = database[env];
-const basename = path.basename(module.filename);
-const db = {};
-let sequelize = null;
+var fs        = require('fs');
+var path      = require('path');
+var Sequelize = require('sequelize');
+var basename  = path.basename(module.filename);
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/../../../config/database.js')[env];
+var db        = {};
+
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+  var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
@@ -33,4 +33,4 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;
