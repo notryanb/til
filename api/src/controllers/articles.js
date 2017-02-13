@@ -1,5 +1,8 @@
-const Sequelize = require('sequelize');
-const shx = require('shelljs/global');
+//const Sequelize = require('sequelize');
+//const shx = require('shelljs/global');
+
+import Sequelize from 'sequelize';
+import shx from 'shelljs/global';
 
 /*
  * TODO
@@ -36,7 +39,7 @@ var Article = connection.define('article', {
 connection.sync().then(function () {
   return Article.create({
     author: 'Ryan',
-    content: 'Updated names'
+    content: 'All Webpack!'
   });
 });
 
@@ -75,12 +78,12 @@ function *show(id) {
   //this.redirect('/');
 //}
 
-//export default {
-  //index,
-  //show
-//}
-//
-module.exports = {
+export default {
   index,
   show
 }
+
+//module.exports = {
+  //index,
+  //show
+//}

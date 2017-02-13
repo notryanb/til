@@ -1,16 +1,56 @@
 const webpack = require('webpack');
+const fs = require('fs');
 const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
 
-const config = {
+
+var nodeModules = {};
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
+
+const apiConfig = {
+  entry: [
+    'babel-polyfill',
+    path.resolve(ROOT_PATH, 'api/src/server'),
+  ],
+  output: {
+    path: path.resolve(ROOT_PATH, 'api/build'),
+    filename: 'api-bundle.js'
+  },
+  target: 'node',
+  externals: nodeModules,
+  resolve: { extensions: ['.js'] },
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        include: __dirname,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'stage-0']
+          }
+        }]
+      }
+    ]
+  }
+}
+
+const reactConfig = {
   entry: [
     path.resolve(ROOT_PATH, 'app/src/index'),
   ],
   output: {
     path: path.resolve(ROOT_PATH, 'app/build'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'app-bundle.js'
   },
   devServer: {
     contentBase: path.resolve(ROOT_PATH, 'app/build'),
@@ -32,6 +72,7 @@ const config = {
       {
         test: /\.jsx?$/,
         include: __dirname,
+        exclude: /node_modules/,
         use: [{
           loader: 'babel-loader',
           options: {
@@ -49,4 +90,4 @@ const config = {
   }
 }
 
-module.exports = config;
+module.exports = [apiConfig, reactConfig];

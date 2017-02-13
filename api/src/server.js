@@ -1,25 +1,14 @@
-"use-strict";
+//const koa = require('koa');
+//const logger = require('koa-logger');
+//const bodyParser = require('koa-bodyparser');
+//const cors = require('koa-cors');
+//const router = require('./routers/index.js');
 
-const shx = require('shelljs/global');
-const koa = require('koa');
-const logger = require('koa-logger');
-const bodyParser = require('koa-bodyparser');
-const Sequelize = require('sequelize');
-const cors = require('koa-cors');
-const Koa = require('koa');
-const router = require('./routers/index.js');
-
-/*
- *
- * Import needs to be transpiled
- * as Node currently does not support
- * ES6 module syntax
- *
- */
-
-//import cors from 'koa-cors';
-//import Koa from 'koa';
-//import router from './routes';
+import Koa from 'koa';
+import logger from 'koa-logger';
+import bodyParser from 'koa-bodyparser';
+import cors from 'koa-cors';
+import router from './routers/index.js';
 
 const app = Koa();
 
