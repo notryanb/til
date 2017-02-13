@@ -20,7 +20,7 @@ Working on it...
 
 **MacOSX**
 
-  - brew Upgrade
+  - brew Update
   - brew install postgresql
 
 **Windows**
