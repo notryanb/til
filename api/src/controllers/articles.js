@@ -1,54 +1,8 @@
-import Sequelize from 'sequelize';
-import shx from 'shelljs/global';
-
-/*
- * TODO
- *
- *  - Need to establish db connection
- *  - Routes will directly manipulate data
- *      -> ex. new post will take params and send off to db
- *             Possibly look into intermediate module for
- *             more complicated actions.
- */
-
-const psqlUser = exec(`whoami`).stdout.trimRight();
-const connection = new Sequelize('til_dev', psqlUser, 'password', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-});
-
-var Article = connection.define('article', {
-  author: {
-    type: Sequelize.STRING,
-  },
-  content: {
-    type: Sequelize.STRING
-  }
-}, {
-  freezeTableName: true // Model tableName will be the same as the model name
-});
-
-connection.sync().then(function () {
-  return Article.create({
-    author: 'Ryan',
-    content: 'All Webpack!'
-  });
-});
-
-connection.sync({logging: console.log }).then(function () {
-  return Article.create({
-    author: 'Ryan',
-    content: 'Hot Module Replacement && nodemon'
-  });
-});
-
+import model from '../models';
+const Article = model.Article;
 
 function findArticles(){
+  console.log(model);
   return Article.findAll().then(function (article) {
     return article;
   });
@@ -79,8 +33,3 @@ export default {
   index,
   show
 }
-
-//module.exports = {
-  //index,
-  //show
-//}
