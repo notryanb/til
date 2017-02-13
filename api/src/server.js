@@ -3,102 +3,27 @@
 const shx = require('shelljs/global');
 const koa = require('koa');
 const logger = require('koa-logger');
-const route = require('koa-route');
 const bodyParser = require('koa-bodyparser');
 const Sequelize = require('sequelize');
 const cors = require('koa-cors');
-const app = koa();
-
-const me = exec(`whoami`).stdout.trimRight();
-app.use(cors());
+const Koa = require('koa');
+const router = require('./routers/index.js');
 
 /*
- * TODO
  *
- *  - Need to establish db connection
- *  - Routes will directly manipulate data
- *      -> ex. new post will take params and send off to db
- *             Possibly look into intermediate module for
- *             more complicated actions.
+ * Import needs to be transpiled
+ * as Node currently does not support
+ * ES6 module syntax
+ *
  */
 
-const connection = new Sequelize('til_dev', me, 'password', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-});
+//import cors from 'koa-cors';
+//import Koa from 'koa';
+//import router from './routes';
 
-var Article = connection.define('article', {
-  author: {
-    type: Sequelize.STRING,
-  },
-  content: {
-    type: Sequelize.STRING
-  }
-}, {
-  freezeTableName: true // Model tableName will be the same as the model name
-});
+const app = Koa();
 
-connection.sync().then(function () {
-  return Article.create({
-    author: 'Ryan',
-    content: 'Better names'
-  });
-});
-
-connection.sync({logging: console.log }).then(function () {
-  return Article.create({
-    author: 'Ryan',
-    content: 'Another'
-  });
-});
-// Middleware
+app.use(cors());
 app.use(logger());
-
-// Route Middleware
-// this is where Routes are listed, 
-// similar to Rails `routes.rb` file
-app.use(route.get('/', list));
-app.use(route.get('/post/:id', show));
-app.use(route.post('/post', create));
-
-/*
- Route definitions. 
- This is similar to controller actions
- TODO: 
-  - Look into splitting these into controller files.
-  - Look into best practices for complicated routes
-  */
-
-function findArticles(){
-  return Article.findAll().then(function (article) {
-    return article;
-  });
-}
-
-function *list() {
-  this.body = yield findArticles();
-}
-
-function *show(id) {
-  var post = posts[id];
-  if (!post) this.throw(404, 'invalid post id');
-  this.body = yield { post: post };
-}
-
-function *create() {
-  this.accepts('json', 'text');
-  const post = this.querystring.split('=')[1];
-  console.log("THIS POST: ", post);
-
-  const id = posts.push(post) - 1;
-  post.created_at = new Date();
-  post.id = id;
-  this.redirect('/');
-}
-
+app.use(router.routes());
 app.listen(3030);
