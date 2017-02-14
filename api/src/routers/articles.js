@@ -5,9 +5,8 @@ const router = Router({
     prefix: '/articles'
 });
 
-//router.get('/:id', articles.show);
 router.get('/', articles.index);
-
+router.get('/:id', articles.show);
 
 /*
 
@@ -24,4 +23,5 @@ router.get('/', articles.index);
 //router.post('/', articles.checkLogin, articles.checkParamsBody, articles.create);
 
 export default router;
+
 

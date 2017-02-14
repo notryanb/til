@@ -1,6 +1,4 @@
 import models from '../models';
-  //art.findAll().then((article) => article );
-//var Article = require('../models').article;
 const Article = models.article;
 
 function *index() {
@@ -8,10 +6,10 @@ function *index() {
   this.body = yield articles;
 }
 
-function *show(id) {
-  var post = posts[id];
-  if (!post) this.throw(404, 'invalid post id');
-  this.body = yield { post: post };
+function *show(next) {
+  const article = Article.findById(this.params.id).then((article) => article);
+  if (!article) return this.throw(404, 'invalid post id');
+  this.body = yield { article: article };
 }
 
 //function *create() {

@@ -1,20 +1,14 @@
-//import fs from 'fs';
-//import path from 'path';
 import Router from 'koa-router';
-import articles from '../controllers/articles';
+import articlesController from '../controllers/articles';
+import articleRouter from './articles';
 
-//const basename = path.basename(module.filename);
 const router = Router();
 
-//fs
-  //.readdirSync(__dirname)
-  //.filter(function(file) {
-        //return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-      //})
-  //.forEach(function(file) {
-        //let route = require(path.join(__dirname, file));
-        //router.use(route.routes());
-      //});
-router.get('/', articles.index);
+// App Root
+// Can be any route
+router.get('/', articlesController.index);
+
+// Add in all other routes here
+router.use(articleRouter.routes());
 
 export default router;
