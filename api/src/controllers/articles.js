@@ -1,15 +1,11 @@
-import model from '../models';
-const Article = model.Article;
-
-function findArticles(){
-  console.log(model);
-  return Article.findAll().then(function (article) {
-    return article;
-  });
-}
+import models from '../models';
+  //art.findAll().then((article) => article );
+//var Article = require('../models').article;
+const Article = models.article;
 
 function *index() {
-  this.body = yield findArticles();
+  const articles = Article.findAll().then((article) => article);
+  this.body = yield articles;
 }
 
 function *show(id) {

@@ -5,7 +5,7 @@ const router = Router({
     prefix: '/articles'
 });
 
-router.get('/:id', articles.show);
+//router.get('/:id', articles.show);
 router.get('/', articles.index);
 
 

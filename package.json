@@ -53,10 +53,12 @@
     "start": "webpack --watch",
     "start:dev": "webpack --watch & npm run dev",
     "sqlz": "node_modules/.bin/sequelize",
-    "build": "webpack --watch",
+    "build-watch": "webpack --watch",
+    "build": "webpack",
     "dev": "node_modules/.bin/webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
-    "webserver": "nodemon api/build/api-bundle.js"
+    "api": "node api/build/api-bundle.js",
+    "node-watch": "nodemon api/build/api-bundle.js"
   }
 }

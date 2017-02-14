@@ -2,7 +2,7 @@ import Koa from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import cors from 'koa-cors';
-import router from './routers/index';
+import router from './routers';
 import db from './models';
 
 const app = Koa();
