@@ -1,15 +1,16 @@
 import models from '../models';
-const Article = models.article;
+const User = models.user;
 
 function *index() {
-  const articles = Article.findAll().then((article) => article);
-  this.body = yield articles;
+  const users = User.findAll().then((users) => users);
+  if (!users) return this.throw(404, 'no users');
+  this.body = yield users;
 }
 
-function *show(next) {
-  const article = Article.findById(this.params.id).then((article) => article);
-  if (!article) return this.throw(404, 'invalid post id');
-  this.body = yield { article: article };
+function *show() {
+  const user = User.findById(this.params.id).then((user) => user);
+  if (!user) return this.throw(404, 'invalid post id');
+  this.body = yield { user: user };
 }
 
 //function *create() {
@@ -27,3 +28,5 @@ export default {
   index,
   show
 }
+
+

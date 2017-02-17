@@ -1,6 +1,5 @@
 import models from '../models';
 const Post = models.post;
-console.log("POSTS: ", Post);
 
 function *index() {
   const posts = Post.findAll().then((posts) => posts);

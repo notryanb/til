@@ -8,3 +8,14 @@ folders and explain our development process.
 
 **FAQ**
   - [Development ENV](./NOTES/dev_env.md)
+
+**Proposed Features**
+- likes
+- markdown
+- tagging / category system
+- Dev login
+- dev profiles
+- contact author
+- search (post title / tag || category)
+- publishing system
+- site statistics
