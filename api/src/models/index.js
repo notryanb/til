@@ -13,7 +13,8 @@ if (config.use_env_variable) {
   //Initialize models
 
   let modules = [
-    require('./article.js')
+    require('./post.js'),
+    require('./user.js')
   ];
 
   modules.forEach((module) => {

@@ -1,12 +1,12 @@
 import Router from 'koa-router';
-import articles from '../controllers/articles';
+import postsController from '../controllers/posts';
 
 const router = Router({
-    prefix: '/articles'
+    prefix: '/posts'
 });
 
-router.get('/', articles.index);
-router.get('/:id', articles.show);
+router.get('/', postsController.index);
+router.get('/:id', postsController.show);
 
 /*
 

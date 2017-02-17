@@ -71,4 +71,12 @@ Working on it...
 Working on it...
 
 
+---
+
+
+## Migrations
+
+`sequelize model:create --name user --attibutes 'first_name:string, last_name:string, email:string, active:boolean, bio:text'`
+
+
 
