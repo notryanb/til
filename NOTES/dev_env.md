@@ -1,5 +1,13 @@
 # Developer Environment Setup 
 
+## OSX / Unix
+
+Dev Tools to make sure you have
+- nvm (Node Version Manager) `nvm --version` => 0.33.0 on my machine.
+- node Current or LTS(latests). These are v6.9.5 || v7.4.0 right now. Can be later.
+
+---
+
 ## Cloning the repository
 
 **MacOSX**
@@ -70,6 +78,16 @@ Working on it...
 
 Working on it...
 
+
+---
+
+## Sequelize CLI 
+
+This adds the sequelize-cli package globally so you don't have to type yarn before it.
+
+`yarn global add sequelize-cli`
+
+`sequelize` => Will output help doc menu if correct.:wq
 
 ---
 
