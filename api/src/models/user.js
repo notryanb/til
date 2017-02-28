@@ -65,7 +65,7 @@ module.exports = function(sequelize, DataTypes) {
     indexes: [{ unique: true, fields: ['email'] }],
     classMethods: {
       associate: function(models) {
-        user.hasMany(models.Post, { foreignKey: 'user_id' });
+        User.hasMany(models.Post, { foreignKey: 'user_id' });
       }
     },
     instanceMethods: {

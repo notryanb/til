@@ -28,13 +28,12 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false;
     }
   }, {
-    underscored: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     tableName: 'posts',
     classMethods: {
       associate: function(models) {
-        post.belongsTo(models.User, { foreignKey: 'user_id' });
+        Post.belongsTo(models.User, { foreignKey: 'user_id' });
       }
     },
     getterMethods : {
