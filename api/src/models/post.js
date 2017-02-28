@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var post = sequelize.define('Post', {
+  var Post = sequelize.define('Post', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -43,5 +43,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return post;
+  return Post;
 };

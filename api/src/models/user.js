@@ -3,7 +3,7 @@
 import bcrypt from 'bcrypt';
 
 module.exports = function(sequelize, DataTypes) {
-  var user = sequelize.define('User', {
+  var User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -62,7 +62,7 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     tableName: 'users',
-    indexes: indexes: [{ unique: true, fields: ['email'] }],
+    indexes: [{ unique: true, fields: ['email'] }],
     classMethods: {
       associate: function(models) {
         user.hasMany(models.Post, { foreignKey: 'user_id' });
@@ -111,5 +111,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return user;
+  return User;
 };
