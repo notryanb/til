@@ -41,6 +41,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
+    "chance": "^1.0.6",
     "css-loader": "^0.26.1",
     "mocha": "^3.2.0",
     "node-sass": "^4.5.0",
@@ -50,15 +51,13 @@
     "webpack-dev-server": "^1.16.3"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "start:dev": "webpack --watch & npm run dev",
-    "sqlz": "node_modules/.bin/sequelize",
-    "build-watch": "webpack --watch",
-    "build": "webpack",
-    "dev": "node_modules/.bin/webpack-dev-server",
-    "test": "mocha --compilers js:babel-core/register --recursive",
-    "test:watch": "npm run test -- --watch",
     "api": "node api/build/api-bundle.js",
-    "node-watch": "nodemon api/build/api-bundle.js"
+    "api-watch": "nodemon api/build/api-bundle.js",
+    "app": "webpack --watch",
+    "app-dev": "node_modules/.bin/webpack-dev-server",
+    "build": "webpack",
+    "sq": "node_modules/.bin/sequelize",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test:watch": "npm run test -- --watch"
   }
 }
