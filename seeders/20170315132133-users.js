@@ -24,6 +24,7 @@ module.exports = {
         last_name: chance.last(),
         email: chance.email(),
         active: true,
+        password_digest: 'testing',
         bio: chance.paragraph(),
         createdAt: new Date,
         updatedAt: new Date

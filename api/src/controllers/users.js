@@ -36,14 +36,15 @@ import models from '../models';
 const User = models.User;
 
 const signIn = async (ctx, _next) => {
-  if(ctx.state.isUserSignIn){
-    ctx.redirect('/');
-    return;
-  }
-  const locals = {
-    nav: 'signIn'
-  };
-  await ctx.render('users/signIn', locals);
+  ctx.response.body = { "test": "testing" };
+  //if(ctx.state.isUserSignIn){
+    //ctx.redirect('/');
+    //return;
+  //}
+  //const locals = {
+    //nav: 'signIn'
+  //};
+  //await ctx.render('users/signIn', locals);
 };
 
 const LogOut = (ctx, _next) => {
@@ -57,12 +58,12 @@ const LogOut = (ctx, _next) => {
 };
 
 const LogIn = async (ctx, _next) => {
-  console.log('CONTEXT: ', ctx);
+  console.log('CONTEXT / next: ', ctx, _next);
   const body = ctx.request.body;
   if (!(body.email && body.password)) {
     const locals = { nav: 'signIn' };
     //await ctx.render('users/signIn', locals);
-    return;
+    ctx.response.body = { "it":"works" };
   }
   let user = await models.User.findOne({ where: { email: body.email }});
   if(user && user.authenticate(body.password)) {
@@ -73,7 +74,7 @@ const LogIn = async (ctx, _next) => {
   } else {
     const locals = { nav: 'signIn' };
     ctx.flashMessage.warning = 'User name or Password Error.';
-    //await ctx.render('users/signIn', locals);
+    await ctx.render('users/signIn', locals);
   }
 };
 

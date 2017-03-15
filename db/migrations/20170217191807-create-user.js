@@ -17,6 +17,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      password_digest: {
+        type: Sequelize.STRING
+      },
       active: {
         type: Sequelize.BOOLEAN
       },
