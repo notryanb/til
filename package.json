@@ -57,6 +57,7 @@
     "app": "webpack --watch",
     "app-dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack",
+    "console": "node api/src/server.js console",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo:all": "sequelize db:migrate:undo:all",
     "db:seed:all": "sequelize db:seed:all",

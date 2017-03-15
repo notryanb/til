@@ -58,19 +58,19 @@ const LogOut = (ctx, _next) => {
 };
 
 const LogIn = async (ctx, _next) => {
-  console.log('CONTEXT / next: ', ctx, _next);
   const body = ctx.request.body;
   if (!(body.email && body.password)) {
     const locals = { nav: 'signIn' };
     //await ctx.render('users/signIn', locals);
-    ctx.response.body = { "it":"works" };
+    return;
   }
   let user = await models.User.findOne({ where: { email: body.email }});
   if(user && user.authenticate(body.password)) {
+    console.log('USER AUTHENTICATED');
     ctx.session.userId = user.id;
     ctx.status = 302;
     ctx.flashMessage.notice = 'Log In Successfully!';
-    ctx.redirect('/');
+    console.log("SUCCESS");
   } else {
     const locals = { nav: 'signIn' };
     ctx.flashMessage.warning = 'User name or Password Error.';
