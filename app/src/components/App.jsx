@@ -10,6 +10,7 @@ export default class App extends React.Component {
       blogs: []
     }
   }
+ 
   componentDidMount() {
     fetch('http://localhost:3030')
       .then(response => response.json())
@@ -17,6 +18,14 @@ export default class App extends React.Component {
         this.setState({ blogs: data });
       });
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.blogs !== nextState.blogs) {
+      return true;
+    }
+    return false;
+  }
+
   
   render() {
     return <BlogPost blogs={this.state.blogs} />;

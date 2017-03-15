@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     email: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
       validate: {
         notEmpty: true,
         isEmail: true
@@ -59,8 +59,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.VIRTUAL
     }
   }, {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     tableName: 'users',
     indexes: [{ unique: true, fields: ['email'] }],
     classMethods: {

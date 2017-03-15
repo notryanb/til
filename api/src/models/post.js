@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id'
+    },
     title: {
       type: DataTypes.TEXT,
       validate: {
@@ -25,11 +29,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     published: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false;
+      defaultValue: false
     }
   }, {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     tableName: 'posts',
     classMethods: {
       associate: function(models) {

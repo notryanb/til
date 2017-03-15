@@ -22,6 +22,7 @@ config/database.js
 
 # Yarn integrity file
 .yarn-integrity
+.yarnclean
 
 # OSX Specific meta files
 .DS_Store
