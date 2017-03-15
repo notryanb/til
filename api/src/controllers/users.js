@@ -1,5 +1,5 @@
 import models from '../models';
-const User = models.user;
+const User = models.User;
 
 function *index() {
   const users = User.findAll().then((users) => users);

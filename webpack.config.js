@@ -27,9 +27,6 @@ const apiConfig = {
   target: 'node',
   externals: nodeModules,
   resolve: { extensions: ['.js'] },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
   module: {
     rules: [
       {

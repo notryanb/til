@@ -1,3 +1,22 @@
 body {  
   background-color: #efefef; 
+  color: #000;
 }
+
+.post-container {
+  margin: 0 auto;
+  width: 80%;
+  .post {
+    padding: 4px;  
+
+    .title {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .body {
+
+    }
+  }
+}
+
