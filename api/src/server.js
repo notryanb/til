@@ -15,6 +15,9 @@ const sequelize = db.sequelize;
 const redisStore = koaRedis({
   url: config.redisUrl
 });
+
+app.keys = [config.secretKeyBase];
+
 app
   .use(bodyParser())
   .use(cors())

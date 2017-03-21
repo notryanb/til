@@ -66,15 +66,15 @@ const LogIn = async (ctx, _next) => {
   }
   let user = await models.User.findOne({ where: { email: body.email }});
   if(user && user.authenticate(body.password)) {
-    console.log('USER AUTHENTICATED');
     ctx.session.userId = user.id;
     ctx.status = 302;
-    ctx.flashMessage.notice = 'Log In Successfully!';
+    //ctx.flashMessage.notice = 'Log In Successfully!';
     console.log("SUCCESS");
   } else {
-    const locals = { nav: 'signIn' };
-    ctx.flashMessage.warning = 'User name or Password Error.';
-    await ctx.render('users/signIn', locals);
+    console.log("login Failed");
+    //const locals = { nav: 'signIn' };
+    //ctx.flashMessage.warning = 'User name or Password Error.';
+    //await ctx.render('users/signIn', locals);
   }
 };
 
