@@ -1,26 +1,34 @@
 import Koa from 'koa';
-import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import convert from 'koa-convert';
-import json from 'koa-json';
 import session from 'koa-generic-session';
+import json from 'koa-json';
+import logger from 'koa-logger';
+import koaRedis from 'koa-redis';
 import cors from 'koa-cors';
 import router from './routers';
 import db from './models';
 
 const app = new Koa();
 const sequelize = db.sequelize;
-
+const redisStore = koaRedis({
+  url: config.redisUrl
+});
 app
   .use(bodyParser())
-  .use(convert(cors()))
+  .use(cors())
   .use(convert(json()))
   .use(convert(logger()))
+  .use(convert(session({
+    store: redisStore,
+    prefix: 'kails:sess:',
+    key: 'kails.sid'
+  })))
   .use(router.routes())
   .use(router.allowedMethods());
 
 
-// TODO - Fix the repl, doesn't have access to db
+// REPL access for 'yarn console'
 if (process.argv[2] && process.argv[2][0] == 'c') {
   const repl = require('repl');
   global.models = db;
