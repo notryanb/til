@@ -8,6 +8,7 @@ import koaRedis from 'koa-redis';
 import cors from 'koa-cors';
 import router from './routers';
 import db from './models';
+import config from './config/config';
 
 const app = new Koa();
 const sequelize = db.sequelize;
