@@ -100,7 +100,7 @@ module.exports = function(sequelize, DataTypes) {
       return callback(null, options);
     }
   });
-
+  
   User.beforeUpdate(function(user, options, callback) {
     user.email = user.email.toLowerCase();
     if (user.password){

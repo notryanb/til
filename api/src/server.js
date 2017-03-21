@@ -19,6 +19,19 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-sequelize
-  .sync()
-  .then(() => app.listen(3030));
+
+// TODO - Fix the repl, doesn't have access to db
+if (process.argv[2] && process.argv[2][0] == 'c') {
+  const repl = require('repl');
+  global.models = db;
+  repl.start({
+    prompt: '> ',
+    useGlobal: true
+  }).on('exit', () => { process.exit(); });
+}
+else {
+  sequelize
+    .sync()
+    .then(() => app.listen(3030));
+}
+

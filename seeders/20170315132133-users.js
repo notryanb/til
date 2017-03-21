@@ -2,6 +2,8 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
+
+
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -24,7 +26,6 @@ module.exports = {
         last_name: chance.last(),
         email: chance.email(),
         active: true,
-        password: 'testing',
         bio: chance.paragraph(),
         createdAt: new Date,
         updatedAt: new Date
