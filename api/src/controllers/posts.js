@@ -1,16 +1,16 @@
 import models from '../models';
 const Post = models.Post;
 
-function *index() {
+const index = async (ctx, _next) => {
   const posts = Post.findAll().then((posts) => posts);
-  if (!posts) return this.throw(404, 'no posts');
-  this.body = yield posts;
+  await posts;
+  ctx.response.body = posts;
 }
 
-function *show() {
-  const post = Post.findById(this.params.id).then((post) => post);
-  if (!post) return this.throw(404, 'invalid post id');
-  this.body = yield { post: post };
+const show = async (ctx, _next) => {
+  const post = Post.findById(ctx.params.id).then((post) => post);
+  await post;
+  ctx.response.body = post;
 }
 
 //function *create() {
