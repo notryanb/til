@@ -7,7 +7,6 @@ export default class BlogPost extends React.Component {
 
   render() {
     return (
-
       <div className='post-container'>
         {
           this.props.blogs.map(blog => {
@@ -20,8 +19,8 @@ export default class BlogPost extends React.Component {
   }
 }
 
- const Blog = props  => {
-   const { user_id, title, body } = props.blog;
+const Blog = props  => {
+  const { user_id, title, body } = props.blog;
   return (
     <div className='post'>
       <div className='author'>Author ID: {user_id}</div>

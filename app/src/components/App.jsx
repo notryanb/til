@@ -1,6 +1,12 @@
+// Libs
 import React from 'react';  
-import BlogPost from './BlogPost.jsx';
+import { Router, Route, hashHistory} from 'react-router';
 
+// Components
+import BlogPost from './BlogPost.jsx';
+import LoginForm from './LoginForm.jsx';
+
+// CSS
 require('./App.scss');
 
 export default class App extends React.Component {  
@@ -15,7 +21,7 @@ export default class App extends React.Component {
     fetch('http://localhost:3030')
       .then(response => response.json())
       .then(data => {
-        this.setState({ blogs: data });
+        this.setState({ blogs: data.fulfillmentValue });
       });
   }
   
@@ -28,6 +34,12 @@ export default class App extends React.Component {
 
   
   render() {
-    return <BlogPost blogs={this.state.blogs} />;
+    return (
+      <div>
+      <Router history={hashHistory}>
+        <Route path='login' component={LoginForm} />
+      </Router>
+      </div>
+    );
   }
 }
