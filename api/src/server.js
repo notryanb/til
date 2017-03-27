@@ -25,8 +25,8 @@ app
   .use(convert(logger()))
   .use(convert(session({
     store: redisStore,
-    prefix: 'kails:sess:',
-    key: 'kails.sid'
+    prefix: 'til:sess:',
+    key: 'til.sid'
   })))
   .use(router.routes())
   .use(router.allowedMethods());
