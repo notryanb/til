@@ -16,18 +16,21 @@ const LogOut = (ctx, _next) => {
 };
 
 const LogIn = async (ctx, _next) => {
+  console.log('HIT SIGN IN ROUTE');
   const body = ctx.request.body;
   if (!(body.email && body.password)) {
     const locals = { nav: 'signIn' };
+    ctx.response.body = 'LOGIN FAILED, MISSING PARAMS'
     return;
   }
   let user = await models.User.findOne({ where: { email: body.email }});
   if(user && user.authenticate(body.password)) {
     ctx.session.userId = user.id;
     ctx.status = 302;
-    console.log("SUCCESS");
+    ctx.response.body = 'FOUND USER'
+    return ctx;
   } else {
-    console.log("login Failed");
+    ctx.response.body = 'LOGIN FAILED'
   }
 };
 

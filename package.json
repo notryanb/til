@@ -57,7 +57,7 @@
     "api": "node api/build/api-bundle.js",
     "api-watch": "nodemon api/build/api-bundle.js",
     "app": "webpack --watch",
-    "app-dev": "node_modules/.bin/webpack-dev-server",
+    "app-dev": "webpack-dev-server",
     "build": "webpack",
     "console": "babel-node api/src/server.js console",
     "db:migrate": "sequelize db:migrate",

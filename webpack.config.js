@@ -60,7 +60,8 @@ const reactConfig = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
+    colors: true
   },
   devtool: 'source-map',
   plugins: [
