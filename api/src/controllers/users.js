@@ -10,28 +10,25 @@ const LogOut = (ctx, _next) => {
     ctx.redirect('/');
     return;
   }
-  // ctx.session.userId = null;
-  // ctx.flashMessage.notice = 'Log Out Successfully!';
-  // ctx.redirect('/');
 };
 
 const LogIn = async (ctx, _next) => {
-  console.log('HIT SIGN IN ROUTE');
   const body = ctx.request.body;
   if (!(body.email && body.password)) {
-    const locals = { nav: 'signIn' };
-    ctx.response.body = 'LOGIN FAILED, MISSING PARAMS'
-    return;
+    ctx.response.body = { msg: 'LOGIN FAILED, MISSING PARAMS' };
   }
-  let user = await models.User.findOne({ where: { email: body.email }});
-  if(user && user.authenticate(body.password)) {
-    ctx.session.userId = user.id;
-    ctx.status = 302;
-    ctx.response.body = 'FOUND USER'
-    return ctx;
-  } else {
-    ctx.response.body = 'LOGIN FAILED'
-  }
+
+  let user = models.User.findOne({ where: { email: body.email }});
+
+  await user.then(user => {
+    if(user && user.authenticate(body.password)) {
+      ctx.session.userId = user.id;
+      ctx.status = 302;
+      ctx.response.body = { msg: 'FOUND USER' };
+    } else {
+      ctx.response.body = { msg: 'LOGIN FAILED' };
+    }
+  });
 };
 
 export default {

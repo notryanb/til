@@ -18,13 +18,22 @@ class LoginForm extends Component {
   }
 
   fetchHandler(email, password) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
     fetch('http://localhost:3030/users/sign_in', {
-      method: 'post',
-      body: JSON.stringify(this.state),
-      headers: { 'Content-Type': 'application/json' }
+      method: 'POST',
+      body: JSON.stringify({ 
+        email: this.state.email,
+        password: this.state.password
+      }),
+      redirect: 'follow',
+      headers: headers,
+      mode: 'cors'
     })
+    .then(res => res.json())
     .then(res => console.log(res))
-    .catch(err => console.log('ERROR: ', err));
+    .catch(err => console.log('SERVER ERROR: ', err));
   }
 
   inputHandler(e) {
