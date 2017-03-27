@@ -2,7 +2,7 @@
 import React from 'react';  
 
 // CSS
-require('./App.scss');
+import './App.scss';
 
 export default class App extends React.Component {  
   constructor() {

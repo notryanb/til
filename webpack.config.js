@@ -47,6 +47,8 @@ const apiConfig = {
 const reactConfig = {
   entry: [
     path.resolve(ROOT_PATH, 'app/src/index'),
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
     path: path.resolve(ROOT_PATH, 'app/build'),

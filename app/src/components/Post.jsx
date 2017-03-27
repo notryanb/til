@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default const Post = props  => {
   const { user_id, title, body } = props.post;
