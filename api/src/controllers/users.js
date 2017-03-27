@@ -1,32 +1,38 @@
 import models from '../models';
 const User = models.User;
 
-function *index() {
-  const users = User.findAll().then((users) => users);
-  if (!users) return this.throw(404, 'no users');
-  this.body = yield users;
-}
+const signIn = async (ctx, _next) => {
+  ctx.response.body = { "test": "testing" };
+};
 
-function *show() {
-  const user = User.findById(this.params.id).then((user) => user);
-  if (!user) return this.throw(404, 'invalid post id');
-  this.body = yield { user: user };
-}
+const LogOut = (ctx, _next) => {
+  if(!ctx.state.isUserSignIn){
+    ctx.redirect('/');
+    return;
+  }
+};
 
-//function *create() {
-  //this.accepts('json', 'text');
-  //const post = this.querystring.split('=')[1];
-  //console.log("THIS POST: ", post);
+const LogIn = async (ctx, _next) => {
+  const body = ctx.request.body;
+  if (!(body.email && body.password)) {
+    ctx.response.body = { msg: 'LOGIN FAILED, MISSING PARAMS' };
+  }
 
-  //const id = posts.push(post) - 1;
-  //post.created_at = new Date();
-  //post.id = id;
-  //this.redirect('/');
-//}
+  let user = models.User.findOne({ where: { email: body.email }});
+
+  await user.then(user => {
+    if(user && user.authenticate(body.password)) {
+      ctx.session.userId = user.id;
+      ctx.status = 302;
+      ctx.response.body = { msg: 'FOUND USER' };
+    } else {
+      ctx.response.body = { msg: 'LOGIN FAILED' };
+    }
+  });
+};
 
 export default {
-  index,
-  show
-}
-
-
+  signIn,
+  LogIn,
+  LogOut
+};

@@ -1,26 +1,13 @@
 import Router from 'koa-router';
-import usersController from '../controllers/users';
+import users from '../controllers/users';
 
 const router = Router({
     prefix: '/users'
 });
-
-router.get('/', usersController.index);
-router.get('/:id', usersController.show);
-
-/*
-
-  Below are examples of chaining functions for auth.
-  This is similar to before/after hooks in RoR
- 
-*/
-
-
-//router.get('/new', articles.checkLogin, articles.newArticle);
-//router.get('/:id', articles.show);
-//router.put('/:id', articles.checkLogin, articles.checkArticleOwner, articles.checkParamsBody, articles.update);
-//router.get('/:id/edit', articles.checkLogin, articles.checkArticleOwner, articles.edit);
-//router.post('/', articles.checkLogin, articles.checkParamsBody, articles.create);
+router.get('/sign_in', users.signIn);
+router.post('/sign_in', users.LogIn);
+router.get('/logout', users.LogOut);
+//router.get('/', users.index);
 
 export default router;
 

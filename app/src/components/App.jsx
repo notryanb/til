@@ -1,7 +1,8 @@
+// Libs
 import React from 'react';  
-import BlogPost from './BlogPost.jsx';
 
-require('./App.scss');
+// CSS
+import './App.scss';
 
 export default class App extends React.Component {  
   constructor() {
@@ -15,7 +16,7 @@ export default class App extends React.Component {
     fetch('http://localhost:3030')
       .then(response => response.json())
       .then(data => {
-        this.setState({ blogs: data });
+        this.setState({ blogs: data.fulfillmentValue });
       });
   }
   
@@ -28,6 +29,10 @@ export default class App extends React.Component {
 
   
   render() {
-    return <BlogPost blogs={this.state.blogs} />;
+    return (
+      <div>
+      App Root
+      </div>
+    );
   }
 }

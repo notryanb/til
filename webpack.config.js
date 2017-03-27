@@ -47,6 +47,8 @@ const apiConfig = {
 const reactConfig = {
   entry: [
     path.resolve(ROOT_PATH, 'app/src/index'),
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
     path: path.resolve(ROOT_PATH, 'app/build'),
@@ -58,7 +60,8 @@ const reactConfig = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
+    colors: true
   },
   devtool: 'source-map',
   plugins: [
