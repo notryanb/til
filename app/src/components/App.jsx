@@ -1,15 +1,5 @@
 // Libs
 import React from 'react';  
-import { 
-  Router,
-  Route,
-  Link,
-  browserHistory
-} from 'react-router';
-
-// Components
-import BlogPost from './BlogPost.jsx';
-import LoginForm from './LoginForm.jsx';
 
 // CSS
 require('./App.scss');
@@ -41,9 +31,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-      <Router history={browserHistory}>
-        <Route path='login' component={LoginForm} />
-      </Router>
+      App Root
       </div>
     );
   }
