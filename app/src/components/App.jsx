@@ -1,6 +1,11 @@
 // Libs
 import React from 'react';  
-import { Router, Route, hashHistory} from 'react-router';
+import { 
+  Router,
+  Route,
+  Link,
+  browserHistory
+} from 'react-router';
 
 // Components
 import BlogPost from './BlogPost.jsx';
@@ -36,7 +41,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-      <Router history={hashHistory}>
+      <Router history={browserHistory}>
         <Route path='login' component={LoginForm} />
       </Router>
       </div>
