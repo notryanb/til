@@ -9,8 +9,21 @@
   },
   "author": "Ryan Blecher",
   "license": "MIT",
+  "scripts": {
+    "app": "webpack --watch",
+    "build": "webpack",
+    "console": "babel-node api/src/server.js console",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
+    "db:seed:all": "sequelize db:seed:all",
+    "sq": "node_modules/.bin/sequelize",
+    "start": "nodemon app/src/server.js",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test:watch": "npm run test -- --watch"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "ejs": "^2.5.6",
     "html-webpack-plugin": "^2.28.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^2.3.0",
@@ -52,19 +65,5 @@
     "shelljs": "^0.7.6",
     "style-loader": "^0.13.1",
     "webpack-dev-server": "^1.16.3"
-  },
-  "scripts": {
-    "api": "node api/build/api-bundle.js",
-    "api-watch": "nodemon api/build/api-bundle.js",
-    "app": "webpack --watch",
-    "app-dev": "webpack-dev-server",
-    "build": "webpack",
-    "console": "babel-node api/src/server.js console",
-    "db:migrate": "sequelize db:migrate",
-    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
-    "db:seed:all": "sequelize db:seed:all",
-    "sq": "node_modules/.bin/sequelize",
-    "test": "mocha --compilers js:babel-core/register --recursive",
-    "test:watch": "npm run test -- --watch"
   }
 }
