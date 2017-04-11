@@ -10,7 +10,7 @@
   "author": "Ryan Blecher",
   "license": "MIT",
   "scripts": {
-    "app": "webpack --watch",
+    "app-watch": "webpack --watch",
     "build": "webpack",
     "console": "babel-node api/src/server.js console",
     "db:migrate": "sequelize db:migrate",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default const Post = props  => {
+const Post = props  => {
   const { user_id, title, body } = props.post;
   return (
     <div className='post'>
@@ -10,4 +10,6 @@ export default const Post = props  => {
     </div>
   );
 }
+
+export default Post;
 

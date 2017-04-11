@@ -6,6 +6,7 @@ import json from 'koa-json';
 import logger from 'koa-logger';
 import koaRedis from 'koa-redis';
 import cors from 'koa-cors';
+import views from 'koa-views';
 import router from './routers';
 import db from './models';
 import config from './config/config';
@@ -17,6 +18,8 @@ const redisStore = koaRedis({
 });
 
 app.keys = [config.secretKeyBase];
+
+app.use(views(__dirname + '/views', { extension: 'ejs' }));
 
 app
   .use(bodyParser())

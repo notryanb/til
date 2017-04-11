@@ -1,37 +1,22 @@
 // Libs
 import React from 'react';  
+import Posts from './Posts';
 
 // CSS
-import './App.scss';
+// import './App.scss';
 
 export default class App extends React.Component {  
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      blogs: []
+      posts: []
     }
-  }
- 
-  componentDidMount() {
-    fetch('http://localhost:3030')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ blogs: data.fulfillmentValue });
-      });
-  }
-  
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.blogs !== nextState.blogs) {
-      return true;
-    }
-    return false;
   }
 
-  
   render() {
     return (
       <div>
-      App Root
+        <Posts posts={this.props.posts} />
       </div>
     );
   }
