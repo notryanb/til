@@ -12,7 +12,7 @@
   "scripts": {
     "app-watch": "webpack --watch",
     "build": "webpack",
-    "console": "babel-node api/src/server.js console",
+    "console": "babel-node app/src/server.js console",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo:all": "sequelize db:migrate:undo:all",
     "db:seed:all": "sequelize db:seed:all",
