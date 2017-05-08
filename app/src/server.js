@@ -5,6 +5,7 @@ import session from 'koa-generic-session';
 import json from 'koa-json';
 import logger from 'koa-logger';
 import koaRedis from 'koa-redis';
+import csrf from 'koa-csrf';
 import cors from 'koa-cors';
 import views from 'koa-views';
 import router from './routers';
@@ -25,6 +26,7 @@ app
   .use(bodyParser())
   .use(cors())
   .use(convert(json()))
+  .use(convert(crsf()))
   .use(convert(logger()))
   .use(convert(session({
     store: redisStore,
