@@ -7,7 +7,7 @@ import ejs from 'ejs';
 const Post = models.Post;
 
 const index = async (ctx, next) => {
-  const posts = await Post.findAll().then((posts) => posts);
+  const posts = await Post.findAll().then(posts => posts);
   const prerenderHtml = await renderToString(
     <App posts={ posts } />
   );
@@ -16,18 +16,22 @@ const index = async (ctx, next) => {
     nav: 'index',
     reactHTML: prerenderHtml,
     preloadedState: { posts: posts },
-    baseUrl: '/'
-    // currentPage: page,
-    // pages: parseInt(articleCount / 10 + 1)
   };
   await ctx.render('../views/index', locals);
-  // await posts.then(() => ctx.response.body = posts)
 }
 
 const show = async (ctx, next) => {
-  const post = Post.findById(ctx.params.id).then((post) => post);
-  await post;
-  return ctx.response.body = post;
+  const post = await Post.findById(ctx.params.id).then((post) => [post]);
+  const prerenderHtml = await renderToString(
+    <App posts={ post } />
+  );
+  const locals = {
+    title: 'Home',
+    nav: 'index',
+    reactHTML: prerenderHtml,
+    preloadedState: { posts: post },
+  };
+  await ctx.render('../views/index', locals);
 }
 
 export default {
