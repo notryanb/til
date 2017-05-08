@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Post from './Post';
 
 export default class Posts extends Component {
   constructor(props) {
@@ -16,4 +17,8 @@ export default class Posts extends Component {
       </div>
     );
   }
+}
+
+Posts.defaultProps = {
+  posts: []
 }

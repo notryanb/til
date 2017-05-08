@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 // CSS
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,13 +21,12 @@ class LoginForm extends Component {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    fetch('http://localhost:3030/users/sign_in', {
+    fetch('/users/sign_in', {
       method: 'POST',
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         email: this.state.email,
         password: this.state.password
       }),
-      redirect: 'follow',
       headers: headers,
       mode: 'cors'
     })
@@ -66,7 +65,7 @@ class LoginForm extends Component {
   render() {
       return (
       <div>
-        <form onSubmit={this.submitHandler} className="login" id="new_user_session" action="/sign_in" acceptCharset="UTF-8" method="POST">
+        <form onSubmit={this.submitHandler} className="login" id="new_user_session" action="/users/sign_in" acceptCharset="UTF-8" method="POST">
           <input name="utf8" type="hidden" value="&#x2713;" />
           <div className="input-group">
             <span className="input-group-addon"><i className ="icon-user"></i></span>
@@ -100,5 +99,3 @@ class LoginForm extends Component {
     );
   };
 }
-
-export default LoginForm;

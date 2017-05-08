@@ -5,8 +5,10 @@ const router = Router({
     prefix: '/posts'
 });
 
-router.get('/', postsController.index);
+router.get('/',    postsController.index);
+router.get('/new', postsController.newPost);
 router.get('/:id', postsController.show);
+router.post('/', postsController.create);
 
 /*
 

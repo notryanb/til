@@ -1,8 +1,21 @@
 import models from '../models';
+import Login from '../views/components/Login';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import ejs from 'ejs';
+
 const User = models.User;
 
 const signIn = async (ctx, _next) => {
-  ctx.response.body = { "test": "testing" };
+  const prerenderHtml = await renderToString(
+    <Login />
+  );
+  const locals = {
+    title: 'Login',
+    nav: 'login',
+    reactHTML: prerenderHtml,
+  };
+  await ctx.render('../views/index', locals);
 };
 
 const LogOut = (ctx, _next) => {
@@ -15,7 +28,7 @@ const LogOut = (ctx, _next) => {
 const LogIn = async (ctx, _next) => {
   const body = ctx.request.body;
   if (!(body.email && body.password)) {
-    ctx.response.body = { msg: 'LOGIN FAILED, MISSING PARAMS' };
+    await ctx.render('../views/fail');
   }
 
   let user = models.User.findOne({ where: { email: body.email }});
@@ -24,9 +37,9 @@ const LogIn = async (ctx, _next) => {
     if(user && user.authenticate(body.password)) {
       ctx.session.userId = user.id;
       ctx.status = 302;
-      ctx.response.body = { msg: 'FOUND USER' };
+      ctx.redirect('/');
     } else {
-      ctx.response.body = { msg: 'LOGIN FAILED' };
+      ctx.render('../views/fail');
     }
   });
 };
