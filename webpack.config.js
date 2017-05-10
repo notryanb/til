@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const HtmlwebpackPlugin = require('html-webpack-plugin');
 
 // var nodeModules = {};
@@ -46,7 +47,8 @@ const ROOT_PATH = path.resolve(__dirname);
 
 const reactConfig = {
   entry: [
-    path.resolve(ROOT_PATH, 'app/src/views/index')
+    path.resolve(ROOT_PATH, 'app/src/views/index'),
+    path.resolve(ROOT_PATH, 'app/src/views/components/App.scss'),
     // 'webpack/hot/dev-server',
     // 'webpack-dev-server/client?http://localhost:8080'
   ],
@@ -87,11 +89,23 @@ const reactConfig = {
         }]
       },
       {
-        test: /\.scss$/,
-        loaders: ['style-loader','css-loader','sass-loader']
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          loader: 'css-loader?importLoaders=1',
+        }),
+      },
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
       }
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin({ // define where to save the file
+      filename: 'app.bundle.css',
+      allChunks: true,
+    }),
+  ]
 }
 
 module.exports = reactConfig;

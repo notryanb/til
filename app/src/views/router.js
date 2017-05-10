@@ -4,8 +4,8 @@ import { Router, Route, browserHistory, hashHistory } from 'react-router';
 
 // Components
 import App from './components/App.jsx';
-import BlogPost from './components/Posts.jsx';
-import LoginForm from './components/LoginForm.jsx';
+import BlogPost from './components/posts/Posts.jsx';
+import LoginForm from './components/login/LoginForm.jsx';
 
 const routes = (
   <Router history={hashHistory}>

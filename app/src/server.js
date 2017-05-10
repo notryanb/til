@@ -5,7 +5,7 @@ import session from 'koa-generic-session';
 import json from 'koa-json';
 import logger from 'koa-logger';
 import koaRedis from 'koa-redis';
-// import csrf from 'koa-csrf';
+import serve from 'koa-static';
 import cors from 'koa-cors';
 import views from 'koa-views';
 import router from './routers';
@@ -21,7 +21,7 @@ const redisStore = koaRedis({
 app.keys = [config.secretKeyBase];
 
 app.use(views(__dirname + '/views', { extension: 'ejs' }));
-
+app.use(serve('app/build'));
 app
   .use(bodyParser())
   .use(cors())

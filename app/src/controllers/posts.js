@@ -1,6 +1,6 @@
 import models from '../models';
 import App from '../views/components/App';
-import PostForm from '../views/components/PostForm';
+import PostForm from '../views/components/posts/PostForm';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import ejs from 'ejs';
